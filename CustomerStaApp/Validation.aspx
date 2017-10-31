@@ -138,12 +138,13 @@
                     <div role="tabpanel" class="tab-pane" id="tab3">
 
                         <div class="col-md-6 col-sm-6 col-lg-6">
-                            <h2>Aprior Algorithm</h2>
+                            <h2>Product Feedback</h2>
                             
                             <table id="tblApriorData" class="table table-responsive table-striped table-bordered">
                                 <thead>
                                 <tr>
                                     <th>Suggested Product</th>
+                                    <th>Recommended Product</th>
                                  
                                    
                                        
@@ -446,7 +447,7 @@
 
                     console.log("data.prior");
                     console.log(this);
-                    trPriorHTML += '<tr><td>' + this.Key + '</td></tr>';
+                    trPriorHTML += '<tr><td>' + this[0] + '</td><td>' + this[1] + '</td></tr>';
 
                 });
 

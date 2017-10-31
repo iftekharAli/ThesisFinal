@@ -119,7 +119,7 @@ namespace CustomerStaApp.Handler
                 var rawToScan = string.Join(",", priorDataKey.Split(',').Distinct());
                 var a = productListMain.Where(o => o.Name.ToString().Contains(rawToScan))
                     .ToList();
-                var ee = productListMain.Where(x => priorDataKey.Split(',').All(x.Name.Contains)).ToList();
+                var ee = productListMain.Where(x =>  priorDataKey.Split(',').All(x.Name.Contains)).ToList();
                 int globalValueToDivide = a.Count;
                 var segmentWise= priorDataKey.Split(',').Distinct();
                 string[] intInput = priorDataKey.Split(',').Distinct().ToArray();
@@ -144,19 +144,19 @@ namespace CustomerStaApp.Handler
                         var aa = productListMain.Where(x => strings.All(x.Name.Contains)).ToList();
                         value = (double)globalValueToDivide/(double)(aa.Count);
                         value = value * 100;
-                        dictionary.Add(val.Left+ " => "+ val.Right, value);
+                        dictionary.Add(val.Left+ ">"+ val.Right, value);
                     }
 
                      PriorResult = dictionary.Where(x => x.Value > 30);
 
-
+                    
                 }
 
             }
 
 
-          
-            var jsonPriorAlgorithData = JsonConvert.SerializeObject(PriorResult.ToList());
+            var aasa  = PriorResult.Select(x => x.Key.Split('>')).ToList();
+            var jsonPriorAlgorithData = JsonConvert.SerializeObject(PriorResult.Select(x=>x.Key.Split('>')).ToList());
             string resjson = "{\"valid\":" + valid + ",\"nonvalid\":" + nonvalid + ",\"prior\":" + jsonPriorAlgorithData + "}";
 
             context.Response.Write(resjson);
